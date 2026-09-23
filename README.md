@@ -1,5 +1,7 @@
 # Decision uncertainty workbench
 
+**[Open the live interactive demo](https://andrewgordienko.github.io/vibrant-planet-decision-lab/)**
+
 A local, self-contained interview prototype for a possible Vibrant Planet / Pyrologix uncertainty-propagation project. It starts **after** the fire model: fixed unit-level hazard inputs flow through uncertain treatment performance, ecological response, and delivery realization into a budget-constrained treatment portfolio. The main output is a decision: which units to select, how often that decision changes, and which downstream uncertainty causes the changes.
 
 The supplied seven-unit landscape is **synthetic**. It is designed to expose a near-boundary planning decision, not to represent any real geography or Vibrant Planet output. Imported unit values stay in the browser; no data is uploaded to a server. The map is schematic and retains the sample geometry even when values are imported.
