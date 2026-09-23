@@ -33,7 +33,7 @@ npm run build # TypeScript and production bundle
 
 ## Decision model
 
-For unit *i* in scenario *s*:
+For unit _i_ in scenario _s_:
 
 ```text
 benefit(i,s) = fixed_hazard(i)
@@ -59,16 +59,16 @@ The model, parser, and tests are in [`src/model.ts`](src/model.ts), [`src/data.t
 
 Click **Load unit CSV**, or download a template from **Method & assumptions**. The pilot accepts exactly seven rows. Required columns:
 
-| Column | Meaning | Valid range |
-|---|---|---|
-| `id`, `name`, `area` | Unit identifiers and labels | nonempty, IDs unique |
-| `acres` | Treatment area | 1–1,000,000 |
-| `cost` | Cost in $m | 0.01–1,000 |
-| `hazard` | Fixed hazard score | 0–1 |
-| `community`, `water`, `habitat` | Normalized outcome exposure scores | 0–100 |
-| `efficacy` | Baseline treatment effectiveness | 0–1 |
-| `readiness` | Baseline delivery realization | 0–1 |
-| `sensitivity` | Ecological-response multiplier | 0–3 |
+| Column                          | Meaning                            | Valid range          |
+| ------------------------------- | ---------------------------------- | -------------------- |
+| `id`, `name`, `area`            | Unit identifiers and labels        | nonempty, IDs unique |
+| `acres`                         | Treatment area                     | 1–1,000,000          |
+| `cost`                          | Cost in $m                         | 0.01–1,000           |
+| `hazard`                        | Fixed hazard score                 | 0–1                  |
+| `community`, `water`, `habitat` | Normalized outcome exposure scores | 0–100                |
+| `efficacy`                      | Baseline treatment effectiveness   | 0–1                  |
+| `readiness`                     | Baseline delivery realization      | 0–1                  |
+| `sensitivity`                   | Ecological-response multiplier     | 0–3                  |
 
 The parser handles quoted CSV fields, validates column presence and numeric ranges, and reports errors in the UI. Row order determines position on the schematic map. The analysis CSV records the chosen units, inclusion frequencies, settings, and summary metrics.
 
