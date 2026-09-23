@@ -1,10 +1,10 @@
-# Decision uncertainty workbench
+# Which treatment would you fund next?
 
 **[Open the live interactive demo](https://andrewgordienko.github.io/vibrant-planet-decision-lab/)**
 
-A local, self-contained interview prototype for a possible Vibrant Planet / Pyrologix uncertainty-propagation project. It starts **after** the fire model: fixed unit-level hazard inputs flow through uncertain treatment performance, ecological response, and delivery realization into a budget-constrained treatment portfolio. The main output is a decision: which units to select, how often that decision changes, and which downstream uncertainty causes the changes.
+An interactive research note and self-contained interview prototype for a possible Vibrant Planet / Pyrologix uncertainty-propagation project. It starts **after** the fire model: fixed unit-level hazard inputs flow through uncertain treatment performance, ecological response, and delivery realization into a budget-constrained treatment portfolio. The main output is a decision: which units to select, how often that decision changes, and which downstream uncertainty causes the changes.
 
-The supplied seven-unit landscape is **synthetic**. It is designed to expose a near-boundary planning decision, not to represent any real geography or Vibrant Planet output. Imported unit values stay in the browser; no data is uploaded to a server. The map is schematic and retains the sample geometry even when values are imported.
+The supplied seven-unit case is **synthetic**. It is designed to expose a near-boundary planning decision, not to represent any real geography or Vibrant Planet output. Imported unit values stay in the browser; no data is uploaded to a server. The article compares the two portfolio decisions and lets a reader rerun the analysis with new values.
 
 ## Run
 
@@ -24,19 +24,19 @@ npm run build # TypeScript and production bundle
 
 ## Five-minute manager walkthrough
 
-1. Start with the expected-value plan and its selected units. Note the fixed hazard scores and the $4.2m budget.
-2. Open the candidate review: two units are almost always selected, while the last slot moves among alternatives.
-3. Show plan stability, mean decision regret, and one-factor portfolio flips. The ecological-response band is the dominant decision driver in the sample.
-4. Switch to the conservative plan. Its 10th-percentile benefit improves, while its mean benefit drops. That is a concrete decision tradeoff, rather than an uncertainty interval alone.
-5. Change the budget, outcome weights, and uncertainty bands. Download the analysis CSV, or load the provided unit CSV template with changed values.
-6. Open **Method & assumptions** to discuss the model boundary and the data needed for a real pilot.
+1. Read the thesis and $4.2m planning question at the top of the article.
+2. Compare the two funded portfolios. North Ridge and Cedar Gap are shared; West Bench and Pine Flats are the contested choice.
+3. Continue to the range chart and one-factor experiment. The ecological-response band is the dominant decision driver in the sample.
+4. Select the downside plan. Its 10th-percentile score improves while its mean score drops.
+5. Change the embedded budget, outcome weights, and uncertainty bands. Download the analysis CSV, or load the unit CSV template with changed values.
+6. Open **Method** to discuss the model boundary and the data needed for a real pilot.
 
 ## Decision model
 
 For unit _i_ in scenario _s_:
 
 ```text
-benefit(i,s) = fixed_hazard(i)
+score(i,s) = fixed_hazard(i)
              × treatment_effectiveness(i,s)
              × delivery_realization(i,s)
              × [w_community × community(i)
@@ -46,7 +46,7 @@ benefit(i,s) = fixed_hazard(i)
 
 Scores are dimensionless decision units. Costs are in millions of dollars. The three outcome weights add to one. Treatment effect, ecological response, and delivery realization are sampled with bounded uniform draws and a fixed seed. The treatment draw has a small unit-specific component; ecology has unit-specific sensitivity; the shared draws make scenarios partially dependent across units. These are **illustrative uncertainty distributions**, not calibrated posteriors.
 
-The optimizer enumerates every feasible subset of the seven candidate units. This is an exact solution for the scoped sample, including the budget constraint. The **expected-value plan** maximizes mean benefit over 360 scenarios. The **conservative plan** maximizes the 10th-percentile benefit. For each scenario, the optimizer also solves the best portfolio if that scenario were known. This produces:
+The optimizer enumerates every feasible subset of the seven candidate units. This is an exact solution for the scoped sample, including the budget constraint. The **expected-value plan** maximizes mean score over 360 scenarios. The **conservative plan** maximizes the 10th-percentile score. For each scenario, the optimizer also solves the best portfolio if that scenario were known. This produces:
 
 - **Plan stability:** share of scenarios in which the displayed plan is the scenario optimum.
 - **Decision regret:** scenario-optimal score minus displayed-plan score, averaged across scenarios. This is an oracle gap / perfect-information upper bound, not a forecast of achievable improvement.
@@ -57,7 +57,7 @@ The model, parser, and tests are in [`src/model.ts`](src/model.ts), [`src/data.t
 
 ## Bring a unit table
 
-Click **Load unit CSV**, or download a template from **Method & assumptions**. The pilot accepts exactly seven rows. Required columns:
+Click **Load unit CSV**, or download a template from the end of the article or the **Method** page. The pilot accepts exactly seven rows. Required columns:
 
 | Column                          | Meaning                            | Valid range          |
 | ------------------------------- | ---------------------------------- | -------------------- |
@@ -70,7 +70,7 @@ Click **Load unit CSV**, or download a template from **Method & assumptions**. T
 | `readiness`                     | Baseline delivery realization      | 0–1                  |
 | `sensitivity`                   | Ecological-response multiplier     | 0–3                  |
 
-The parser handles quoted CSV fields, validates column presence and numeric ranges, and reports errors in the UI. Row order determines position on the schematic map. The analysis CSV records the chosen units, inclusion frequencies, settings, and summary metrics.
+The parser handles quoted CSV fields, validates column presence and numeric ranges, and reports errors in the UI. The analysis CSV records the chosen units, inclusion frequencies, settings, and summary metrics.
 
 ## What a real pilot would require
 

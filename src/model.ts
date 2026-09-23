@@ -12,9 +12,6 @@ export type Project = {
   efficacy: number;
   readiness: number;
   sensitivity: number;
-  shape: string;
-  x: number;
-  y: number;
 };
 
 // Entirely synthetic units and dimensionless scores: no operational dataset is implied.
@@ -32,9 +29,6 @@ export const projects: Project[] = [
     efficacy: 0.73,
     readiness: 0.9,
     sensitivity: 0.5,
-    shape: "M165 79 L230 55 L284 85 L270 147 L210 164 L167 128 Z",
-    x: 219,
-    y: 109,
   },
   {
     id: "B",
@@ -49,9 +43,6 @@ export const projects: Project[] = [
     efficacy: 0.77,
     readiness: 0.86,
     sensitivity: 0.55,
-    shape: "M284 85 L348 67 L408 105 L386 165 L326 180 L270 147 Z",
-    x: 338,
-    y: 126,
   },
   {
     id: "C",
@@ -66,9 +57,6 @@ export const projects: Project[] = [
     efficacy: 0.67,
     readiness: 0.73,
     sensitivity: 1.35,
-    shape: "M210 164 L270 147 L326 180 L329 239 L279 279 L211 248 L184 209 Z",
-    x: 258,
-    y: 213,
   },
   {
     id: "D",
@@ -83,9 +71,6 @@ export const projects: Project[] = [
     efficacy: 0.81,
     readiness: 0.83,
     sensitivity: 0.9,
-    shape: "M106 147 L167 128 L210 164 L184 209 L211 248 L143 272 L99 221 Z",
-    x: 151,
-    y: 196,
   },
   {
     id: "E",
@@ -100,9 +85,6 @@ export const projects: Project[] = [
     efficacy: 0.69,
     readiness: 0.68,
     sensitivity: 1.45,
-    shape: "M211 248 L279 279 L329 239 L371 271 L349 328 L274 346 L208 312 Z",
-    x: 280,
-    y: 289,
   },
   {
     id: "F",
@@ -117,9 +99,6 @@ export const projects: Project[] = [
     efficacy: 0.64,
     readiness: 0.94,
     sensitivity: 0.3,
-    shape: "M326 180 L386 165 L445 185 L438 251 L371 271 L329 239 Z",
-    x: 386,
-    y: 216,
   },
   {
     id: "G",
@@ -134,9 +113,6 @@ export const projects: Project[] = [
     efficacy: 0.75,
     readiness: 0.77,
     sensitivity: 1.25,
-    shape: "M274 346 L349 328 L401 346 L390 390 L323 408 L273 387 Z",
-    x: 333,
-    y: 368,
   },
 ];
 

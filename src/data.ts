@@ -92,7 +92,6 @@ export function parseProjectCsv(text: string): Project[] {
         );
       values[key] = value;
     }
-    // The spatial sketch is schematic; imported values are mapped by row order.
     return {
       ...projects[index],
       id: item.id,
